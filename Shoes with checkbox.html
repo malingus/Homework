@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="shoes_with_checkbox.css">
+    <script>
+        var shoes = [
+            {"type": "flip flops", "brand": "Adidas", "images": "images/flip flops1.jpg"},
+            {"type": "flip flops", "brand": "Puma", "images": "images/flip flops2.jpg"},
+            {"type": "oxfords", "brand": "Bally", "images": "images/oxfords.jpg"},
+            {"type": "oxfords", "brand": "Clarks", "images": "images/oxfords.jpg"},
+            {"type": "trainer", "brand": "Adidas", "images": "images/trainers1.jpg"},
+            {"type": "boat shoes", "brand": "Ecco", "images": "images/boat shoes.jpg"},
+            {"type": "boat shoes", "brand": "Clarks", "images": "images/boat shoes.jpg"},
+            {"type": "monks", "brand": "Bally", "images": "images/monks.jpg"},
+            {"type": "trainer", "brand": "Puma", "images": "images/trainers2.jpg"},
+            {"type": "biker boots", "brand": "Bally", "images": "images/biker boots.jpg"},
+            {"type": "biker boots", "brand": "Clarks", "images": "images/biker boots.jpg"},
+            {"type": "moccassins", "brand": "Ecco", "images": "images/moccassins.jpg"}
+
+        ];
+        window.onload = function () {
+            var box1 = document.getElementById("adidas");
+            var box2 = document.getElementById("bally");
+            var box3 = document.getElementById("clarks");
+            var box4 = document.getElementById("ecco");
+            var box5 = document.getElementById("puma");
+            list = document.getElementById("list");
+
+
+
+            box1.onclick = function () {
+                displayList();
+            };
+            box2.onclick = function () {
+                displayList();
+            };
+
+            box3.onclick = function () {
+                displayList();
+            };
+            box4.onclick = function () {
+                displayList();
+            };
+            box5.onclick = function () {
+                displayList();
+            };
+
+        };
+        function needToDisplay(element) {
+            if (document.getElementById("adidas").checked && element.brand === "Adidas") {
+                return true;
+            } else {
+                if (document.getElementById("bally").checked && element.brand === "Bally") {
+                    return true;
+                } else {
+                    if (document.getElementById("clarks").checked && element.brand === "Clarks") {
+                        return true
+                    } else {
+                        if (document.getElementById("ecco").checked && element.brand === "Ecco") {
+                            return true
+                        } else {
+                            if (document.getElementById("puma").checked && element.brand === "Puma") {
+                                return true
+                            } else {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function clearList(list) {
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
+            }
+
+        }
+        function displayList() {
+            clearList(list);
+            for (var i = 0; i < shoes.length; i++) {
+                var displayCheck = needToDisplay(shoes[i]);
+                if (displayCheck) {
+
+                    console.log(shoes[i].type);
+                    var li = document.createElement('LI');
+                    li.innerHTML = "Shoes type is -" + shoes[i].type;
+                    list.appendChild(li);
+                    var li2 =document.createElement('img');
+                    li2.src = shoes[i].images;
+                    list.appendChild(li2);
+                    /*var img = document.getElementById("canvas");
+                    img.src = shoes[i].images;*/
+                } else {
+                    console.log("false");
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div id="div1">
+    <p><input type="checkbox" id="adidas"/>Adidas<br>
+        <input type="checkbox" id="bally"/>Bally<br>
+        <input type="checkbox" id="clarks"/>Clarks<br>
+        <input type="checkbox" id="ecco"/>Ecco<br>
+        <input type="checkbox" id="puma"/>Puma</p>
+</div>
+<div id="div2">
+    <ul id="list"></ul>
+
+</div>
+</body>
+</html>
