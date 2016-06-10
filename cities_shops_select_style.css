@@ -1,0 +1,16 @@
+body{
+	background-color:#69C;
+}
+#shopsList{
+	width:300px;
+	font-size:30px;
+	color:#06F;
+}
+#cityList {
+	text-transform:uppercase;
+	font-size:30px;
+	color:#C00;
+}
+div {
+	margin-top:400px;
+}

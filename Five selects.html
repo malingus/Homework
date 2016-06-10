@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+        var selectedCity;
+        var shopSelect;
+        var booksSelect;
+        var cities = [
+            {
+                "name": "Paris", "shops": [
+                {
+                    "name": "La Coqueta", "authors": [
+                    {
+                        "name": "J. K. Rowling", "books": [
+                        {"name": "Harry Potter","prices":[
+                            {"price":"1 dollar for 1 book"},
+                            {"price":"10 dollars for 15 books"}
+                        ]},
+                        {"name": "1984","prices":[
+                            {"price":"3 dollars for 1 book"},
+                            {"price":"70 dollars for 25 books"}
+                        ]}
+                    ]
+                    },
+                    {
+                        "name": "George Orwell", "books": [
+                        {"name": "Pride and Prejudice","prices":[
+                            {"price":"2 dollars for 1 book"},
+                            {"price":"50 dollars for 25 books"}
+                        ]},
+                        {"name": "Animal Farm","prices":[
+                            {"price":"2 dollars for 1 book"},
+                            {"price":"50 dollars for 25 books"}
+                        ]}
+                    ]
+                    }
+                ]
+                }
+            ]
+            },
+            {
+                "name": "London", "shops": [
+                {
+                    "name": "Prada", "authors": [
+                    {
+                        "name": "F.Scott Fitzgerald", "books": [
+                        {"name": "The Great Gatsby","prices":[
+                            {"price":"2 dollars for 1 book"},
+                            {"price":"50 dollars for 25 books"}
+                        ]},
+                        {"name": "Hamlet","prices":[
+                            {"price":"1 dollar for 1 book"},
+                            {"price":"10 dollars for 15 books"}
+                        ]}
+                    ]
+                    },
+                    {"name":"Jane Austen","books":[
+                        {"name":"Emma","prices":[
+                            {"price":"7 dollars for 1 book"},
+                            {"price":"60 dollars for 11 books"}
+                        ]},
+                        {"name":"Forgiveness","prices":[
+                            {"price":"1 dollar for 1 book"},
+                            {"price":"10 dollars for 15 books"}
+                        ]}
+                    ]}
+                ]
+                },
+                {
+                    "name": "LV", "authors": [
+                    {
+                        "name": "Willam Shakespeare", "books": [
+                        {"name": "Macbeth","prices":[
+                            {"price":"11 dollars for 1 book"},
+                            {"price":"110 dollars for 15 books"}
+                        ]},
+                        {"name": "A Tale of Two Cities","prices":[
+                            {"price":"1 dollar for 1 book"},
+                            {"price":"16 dollars for 20 books"}
+                        ]}
+                    ]
+                    },
+                    {"name":"Sara Kerrigan","books":[
+                        {"name":"Living in a Swarm","prices":[
+                            {"price":"16 dollars for 1 book"},
+                            {"price":"106 dollars for 12 books"}
+                        ]},
+                        {"name":"How I met Abathur","prices":[
+                            {"price":"25 dollars for 1 book"},
+                            {"price":"250 dollars for 15 books"}
+                        ]}
+                    ]}
+                ]
+                }
+            ]
+            }
+        ];
+        window.onload = function () {
+
+            for (var i = 0; i < cities.length; i++) {
+                var cityItem = cities[i];
+                var cityName = cities[i].name;
+
+                var cityList = document.getElementById("cityList");
+                var opt = document.createElement("option");
+                opt.innerHTML = cityName;
+                console.log("city is - " + JSON.stringify(cityName));
+                cityList.appendChild(opt);
+            }
+        }
+    </script>
+</head>
+<body>
+<div align="center">
+    <select id="cityList"></select>
+    <select id="shopsList"></select>
+    <select id="authorsList"></select>
+    <select id="booksList"></select>
+    <select id="priceList"></select>
+</div>
+<script>
+    var selectCity = document.getElementById("cityList");
+    var selectShop = document.getElementById("shopsList");
+    var selectAuthor = document.getElementById("authorsList");
+    var selectBook = document.getElementById("booksList");
+    var selectPrice = document.getElementById("selectPrice");
+
+    selectCity.onchange = function () {
+        console.log("onchange works");
+        var selectedCityText = selectCity.options[selectCity.selectedIndex].text;
+        //console.log(selectedCityText);
+
+
+        var search = searchShopInArray(cities, selectedCityText);
+        selectedCity = search;
+        for (var i = 0; i < search.shops.length; i++) {
+
+            var shopItem = search.shops[i];
+            //console.log("search item is-" + JSON.stringify(shopItem));
+            var shopName = search.shops[i].name;
+
+            var opt2 = document.createElement("option");
+            opt2.innerHTML = shopName;
+            //console.log("shop is - " + JSON.stringify(shopName));
+            selectShop.appendChild(opt2);
+
+
+        }
+    };
+    selectShop.onchange = function () {
+        console.log("onchange 2 works");
+        console.log(selectedCity);
+
+        var selectedShop1 = selectedCity.shops;
+        //console.log("selected shop in selectedCity is -" + selectedShop1);
+
+        var selectedShops = selectShop.options[selectShop.selectedIndex].text;
+        //console.log("selected shop is -" + selectedShops);
+
+        var shopSearch = searchAuthorsInShop(selectedShop1, selectedShops);
+        shopSelect = shopSearch;
+
+        for (var i = 0; i < shopSearch.authors.length; i++) {
+            var authorsItem = shopSearch.authors[i];
+            var authorsName = shopSearch.authors[i].name;
+
+            var opt3 = document.createElement("option");
+            opt3.innerHTML = authorsName;
+            //console.log("author is - " + JSON.stringify(authorsName));
+            selectAuthor.appendChild(opt3);
+        }
+    };
+    selectAuthor.onchange = function(){
+        console.log("onchange 3 works")
+        console.log(shopSelect);
+
+        var selectedAuthors1 = shopSelect.authors;
+
+        var selectedAuthors= selectAuthor.options[selectAuthor.selectedIndex].text;
+
+
+        var bookSearch = searchBooksInAuthors(selectedAuthors1, selectedAuthors);
+           booksSelect=bookSearch;
+
+        for (var i = 0; i < bookSearch.books.length; i++) {
+            var booksItem =bookSearch.books[i];
+            var booksName = bookSearch.books[i].name;
+
+            var opt4 = document.createElement("option");
+            opt4.innerHTML = booksName;
+            //console.log("author is - " + JSON.stringify(authorsName));
+            selectBook.appendChild(opt4);
+        }
+    };
+    selectBook.onchange = function(){
+        console.log("onchange 4 works")
+        console.log(booksSelect);
+
+        var selectedBook1 = booksSelect.books;
+
+        var selectedBook = selectBook.options[selectBook.selectedIndex].text;
+
+
+        var priceSearch = searchPriceInBooks(selectedBook1, selectedBook);
+
+        for (var i = 0; i < priceSearch.prices.length; i++) {
+            var priceItem = priceSearch.prices[i];
+            var priceValue = priceSearch.prices[i].price;
+
+            var opt5 = document.createElement("option");
+            opt5.innerHTML =priceValue;
+            //console.log("author is - " + JSON.stringify(authorsName));
+            selectPrice.appendChild(opt5);
+        }
+    };
+
+
+    function searchShopInArray(cities, listName) {
+        for (var i = 0; i < cities.length; i++) {
+            if (cities[i].name === listName) {
+                return cities[i];
+            }
+        }
+        return "";
+    }
+    function searchAuthorsInShop(shops, listName) {
+        for (var j = 0; j < shops.length; j++) {
+            if (shops[j].name === listName) {
+                return shops[j];
+            }
+        }
+        return "";
+    }
+    function searchBooksInAuthors(authors, listName) {
+        for (var k = 0; k < authors.length; k++) {
+            if (authors[k].name === listName) {
+                return authors[k];
+            }
+        }
+        return "";
+    }
+    function searchPriceInBooks(books, listName) {
+        for (var k = 0; k < books.length; k++) {
+            if (books[k].name === listName) {
+                return books[k];
+            }
+        }
+        return "";
+    }
+</script>
+</body>
+</html>

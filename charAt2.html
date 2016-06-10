@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CharAt</title>
+    <script>
+        window.onload = function () {
+            var string1 = "Hello world!"
+            String.prototype.replaceAt = function (index, character) {
+                return this.substr(0, index) + character + this.substr(index + character.length);
+            }
+            var thirdLetter = string1.charAt(3).toUpperCase();
+            string1 = string1.replaceAt(2, thirdLetter);
+      ;
+            console.log(string1);
+
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

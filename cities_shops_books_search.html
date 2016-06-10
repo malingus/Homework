@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shops</title>
+    <script>
+        window.onload = function () {
+            cities = [
+                {
+                    "city": "London", "code": "111111", "shop": [{
+
+                    "name": "Wallmart", "code": "123456", "books": [
+                        {
+                            "name": "Emma", "author": "Jane Austen"
+                        },
+                        {
+                            "name": "1984", "author": "George Orwell"
+                        }
+                    ]
+                },
+                    {
+                        "name": "Floris", "code": "223456", "books": [
+                        {
+                            "name": "The Hunger Games", "author": "Suzanne Collins "
+                        },
+                        {
+                            "name": "To Kill a Mockingbird ", "author": "Harper Lee "
+                        }
+                    ]
+                    }
+                ]
+                },
+                {
+                    "city": "Denver", "code": "222222", "shop": [{
+
+                    "name": "Darkroom", "code": "098799", "books": [
+                        {
+                            "name": "Harry Potter", "author": "J. K. Rowling"
+                        },
+                        {
+                            "name": "Pride and Prejudice", "author": "Jane Austen"
+                        }
+                    ]
+                },
+                    {
+                        "name": "Ray Man", "code": "277456", "books": [
+                        {
+                            "name": "Twilight", "author": "Stephenie Meyer  "
+                        },
+                        {
+                            "name": "To Kill a Mockingbird ", "author": "Harper Lee "
+                        }]
+                    }
+                ]
+                },
+                {
+                    "city": "Paris", "code": "333333", "shop": [
+                    {
+
+                        "name": "La Coqueta", "code": "345679", "books": [
+                        {
+                            "name": "Sense and Sensibility", "author": "Jane Austen"
+                        },
+                        {
+                            "name": "The Great Gatsby", "author": "F.Scott Fitzgerald"
+                        }
+                    ]
+                    },
+
+                    {
+                        "name": "Ray Man", "code": "277456", "books": [
+                        {
+                            "name": "Twilight", "author": "Stephenie Meyer"
+                        },
+                        {
+                            "name": "To Kill a Mockingbird ", "author": "Harper Lee "
+                        }
+                    ]
+
+                    }
+                ]
+                }
+            ]
+            document.getElementById("btn").onclick = function () {
+                console.log(document.getElementById("source").value);
+                st = document.getElementById("source").value;
+                //console.log("this is " + st);
+
+                list = document.getElementById("target");
+                console.log(list);
+                clearList(list);
+
+                for (var i = 0; i < cities.length; i++) {
+                    var cityItem = cities[i];
+                    var cityName = cities[i].city;
+                    console.log("Cities = " + cityName);
+
+                    for (var j = 0; j < cityItem.shop.length; j++) {
+                        var shopItem = cityItem.shop[j];
+                        var shopName = cityItem.shop[j].name;
+                        console.log("Shops = " + JSON.stringify(shopName));
+
+                        for (var k = 0; k < shopItem.books.length; k++) {
+                            //books0=shops1[k];
+                            var booksItem = shopItem.books[k].name;
+                            console.log("Books = " + JSON.stringify(booksItem));
+                            var li = document.createElement('LI')
+                            li.innerHTML = "Current city is  - " + cityName + " ," + " available shop is: " +
+                                    shopName + "," + " there is this book: " + booksItem;
+                            list.appendChild(li);
+                        }
+                    }
+
+                }
+            }
+            function clearList(list) {
+                while (list.firstChild) {
+                    list.removeChild(list.firstChild);
+                }
+            }
+
+
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+<center>
+<p>Search your favourite shop here!</p>
+<p><input maxlength="25" size="40" id="source"></p>
+<input value="Search" id="btn" button type="submit">
+<ul id="target"></ul>
+    </center>
+</body>
+</html>

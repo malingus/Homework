@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+        window.onload = function () {
+            document.getElementById("button").onclick = function () {
+                var textInput = document.getElementById("inputValue").value;
+                console.log(textInput);
+
+                var select = document.getElementById("list");
+                var opt = document.createElement("option");
+                opt.innerHTML = textInput;
+                select.appendChild(opt);
+
+                list = document.getElementById("listOfValues");
+                console.log(list);
+                var li = document.createElement('LI')
+                li.innerHTML = textInput;
+                list.appendChild(li);
+
+
+                var test = reverseArr(textInput);
+                console.log(" Normal element = " + textInput + " Reversed element =" + test);
+                textInput = test;
+                document.getElementById("mirror").innerHTML = test;
+            }
+            function reverseArr(s) {
+
+                return s.split("").reverse().join("");
+            }
+        }
+    </script>
+</head>
+<body>
+<center>
+    <input type="text" id="inputValue">
+    <button id="button">Click!</button>
+    <select id ="list"></select>
+    <ul id="listOfValues"></ul>
+    <div id="mirror"></div>
+</center>
+</body>
+</html>

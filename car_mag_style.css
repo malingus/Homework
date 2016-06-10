@@ -1,0 +1,15 @@
+#nameis {
+	color:#C30;
+	font-size:24px;
+}
+#priceis {
+	font-size:21px;
+}
+
+#previous{
+	display:inline-block;
+	float:right;
+}
+#next {
+	display:inline-block;
+}

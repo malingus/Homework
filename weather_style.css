@@ -1,0 +1,28 @@
+body{
+	background:#CCC;
+}
+p{
+	font-family:"MS Serif", "New York", serif;
+	color:#53A0D5 ;
+	font-size:24px;
+}
+#btn{
+	color:#53A0D5;
+	cursor:pointer;
+}
+#dateis{
+	color:#53A0D5;
+}
+#windis{
+	color:#53A0D5;
+}
+#tempis{
+	color:#53A0D5;
+	font-size:36px;
+}
+#condis{
+	color:#53A0D5;
+}
+
+
+	

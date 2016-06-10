@@ -1,0 +1,34 @@
+#siteinfo { font-size:110%;}
+#bd {
+	background:#C69;
+	
+}
+#zag {
+	font-family:"Comic Sans MS", cursive;
+	color:white;
+}
+#btn {
+	font-family:"Comic Sans MS", cursive;
+	padding: 2px;
+	background:white;
+	color:salmon;
+	cursor:pointer;
+	
+    
+}
+#tb {
+	margin-left:auto;
+	margin-right:auto;
+	vertical-align: middle;
+    text-align:center;
+    width: 450px;
+    height: 963px;
+	
+}
+#col{
+	margin-left:auto;
+	margin-right:auto;
+	vertical-align: middle;
+    text-align:center;
+}
+	

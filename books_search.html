@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search of books</title>
+    <link rel="stylesheet" type="text/css" href="gstyle.css">
+    <script>
+
+        window.onload = function () {
+
+            var book1 = {name: "Harry Potter", page: "388", author: "J. K. Rowling"}
+            var book2 = {name: "1984", page: "240", author: "George Orwell"}
+            var book3 = {name: "Pride and Prejudice", page: "312", author: "Jane Austen"}
+            var book4 = {name: "Animal Farm", page: "284", author: "George Orwell"}
+            var book5 = {name: "The Great Gatsby", page: "368", author: "F.Scott Fitzgerald"}
+            var book6 = {name: "Hamlet", page: "145", author: "Willam Shakespeare"}
+            var book7 = {name: "Macbeth", page: "199", author: "Willam Shakespeare"}
+            var book8 = {name: "Sense and Sensibility", page: "356", author: "Jane Austen"}
+            var book9 = {name: "A Tale of Two Cities", page: "215", author: "Charles Dickens"}
+            var book10 = {name: "Emma", page: "189", author: "Jane Austen"}
+            var books = [];
+            books.push(book1, book2, book3, book4, book5, book6, book7, book8, book9, book10);
+            document.getElementById("btn").onclick = function () {
+                console.log(document.getElementById("source").value);
+                st = document.getElementById("source").value;
+                console.log("this is " + st);
+
+
+                var search = searchBook(books, st);
+                if (search.length > 0) {
+                    list = document.getElementById("target");
+                    console.log(list);
+                    clearList(list);
+
+                    for (var i = 0; i < search.length; i++) {
+                        console.log("Book's name = " + search[i].name + "," + " author = " + search[i].author + "," + " pages = " + search[i].page);
+                        var li = document.createElement('LI')
+                        li.innerHTML = "name " + search[i].name + ", " + search[i].author;
+                        list.appendChild(li);
+
+                    }
+                } else {
+                    console.log("Your input is wrong");
+                }
+                console.log(search);
+
+
+            }
+
+
+            function searchBook(books, authorName) {
+                var result = []
+                for (var i = 0; i < books.length; i++) {
+                    if (books[i].author === authorName) {
+                        result.push(books[i]);
+
+                    }
+                }
+                return result;
+            }
+
+            function clearList(list) {
+                while (list.firstChild) {
+                    list.removeChild(list.firstChild);
+                }
+
+            }
+        }
+    </script>
+</head>
+<body id="bd">
+<center>
+
+    <p id="zag">Type the name of book:</p>
+    <p><input maxlength="25" size="40" id="source"></p>
+    <input value="Search" id="btn" button type="submit">
+    <ul id="target"></ul>
+</center>
+</body>
+</html>

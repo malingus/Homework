@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+        <html>
+<head>
+    <title>Add an element in array</title>
+    <script>
+        window.onload = function() {
+            document.getElementById("btn").onclick = function () {
+                var cars = [
+                    "Audi",
+                    "BMW"
+                ];
+                cars.push("Skoda");
+                cars.push("Mercedes", "Bugatti");
+                for (var i = 0; i < cars.length; i++) {
+                    console.log(cars[i]);
+                }
+
+
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div align="center">
+<input button type="submit" id="btn" value="Clicky,Clicky!">
+    </div>
+</body>
+</html>

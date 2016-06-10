@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+        <html>
+<head>
+    <title>Objects in array</title>
+    <script>
+        window.onload = function(){
+            var book1 = {name: "Harry Potter", page: "388", author: "J. K. Rowling"}
+            var book2 = {name: "1984", page: "240", author: "George Orwell"}
+            var book3 = {name: "Pride and Prejudice", page: "312", author: "Jane Austen"}
+            var books=[];
+            books.push(book1,book2,book3);
+            console.log(books);
+
+            for(var i =0;i<books.length;i++){
+
+                console.log("This books' name is "+books[i].name+" and it has "+books[i].page+" pages.");
+            }
+           books.sort(function(a,b){
+               if(a.name>b.name) return 1;
+               if(a.name<b.name) return -1;
+           });
+            console.log(books);
+
+            books.sort(function(a,b){
+                if(a.page>b.page) return 1;
+                if(a.page<b.page) return -1;
+            });
+            console.log(books);
+
+        }
+    </script>
+</head>
+</html>

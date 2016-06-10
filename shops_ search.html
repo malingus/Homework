@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shops</title>
+    <script>
+        window.onload = function () {
+
+
+            stores = [
+                {
+                    "shop": "Wallmart", "code": "123456", "books": [
+                    {
+                        "name": "Emma",
+                        "author": "Jane Austen"
+                    },
+                    {
+                        "name": "1984",
+                        "author": "George Orwell"
+                    }
+                ]
+                },
+                {
+                    "shop": "Darkroom", "code": "098799", "books": [
+                    {
+                        "name": "Harry Potter",
+                        "author": "J. K. Rowling"
+                    },
+                    {
+                        "name": "Pride and Prejudice",
+                        "author": "Jane Austen"
+                    }
+                ]
+                },
+                {
+                    "shop": "La Coqueta", "code": "345679", "books": [
+                    {
+                        "name": "Sense and Sensibility",
+                        "author": "Jane Austen"
+                    },
+                    {
+                        "name": "The Great Gatsby",
+                        "author": "F.Scott Fitzgerald"
+                    }
+                ]
+                }
+            ]
+            document.getElementById("btn").onclick = function () {
+                console.log(document.getElementById("source").value);
+                st = document.getElementById("source").value;
+                console.log("this is " + st);
+
+                list = document.getElementById("target");
+                console.log(list);
+                clearList(list);
+                var storeData = JSON.stringify(stores);
+                for (var i = 0; i < stores.length; i++) {
+                        var s = stores[i];
+                        //console.log("Stores = " + JSON.stringify(s));
+                        for (var j = 0; j < s.books.length; j++) {
+                            var b = s.books[j];
+                            //console.log("Book = " + j +" b = "+ JSON.stringify(b));
+                            console.log("Store name is - " + s.shop + " ," + " books name are: " + b.name + "," + " author is: " + b.author);
+                            var li = document.createElement('LI')
+                            li.innerHTML = "Store name is - " + s.shop + " ," + " books name are: " +
+                                    b.name + "," + " author is: " + b.author;
+                            list.appendChild(li);
+
+                        }
+
+                    }
+
+                }
+                function clearList(list) {
+                    while (list.firstChild) {
+                        list.removeChild(list.firstChild);
+                    }
+                }
+
+        }
+    </script>
+</head>
+<body>
+<center>
+    <p>Search your favourite shop here!</p>
+    <p><input maxlength="25" size="40" id="source"></p>
+    <input value="Search" id="btn" button type="submit">
+    <ul id="target"></ul>
+</center>
+</body>
+</html>

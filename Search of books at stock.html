@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search of books</title>
+    <script>
+        window.onload = function () {
+            stores = getStores();
+            books = getBooks();
+            stock = getStock();
+            document.getElementById("btn").onclick = function () {
+                console.log(document.getElementById("source").value);
+                st = document.getElementById("source").value;
+                console.log("this is: " + st);
+                console.log(books);
+                var resultId = searchIdByName(books, st);
+                console.log("Result id -" + resultId);
+                if (resultId.length > 0) {
+
+
+                    var totalResult = searchInStockById(stock, resultId);
+                    if (totalResult.length > 0) {
+                        for (i = 0; i < totalResult.length; i++) {
+                            var currentTotal = totalResult[i];
+                            console.log("Current total is -" + JSON.stringify(currentTotal));
+
+                            var bookName = searchNameById(books, currentTotal.bookid);
+                            console.log("Book name is -" + JSON.stringify(bookName));
+
+                            var storeName = searchStoreById(stores,currentTotal.storeid);
+                            console.log("Store name is -"+JSON.stringify(storeName));
+console.log("Result id -" + resultId+","+"Book name is -" + JSON.stringify(bookName)+","+"Store name is -"+JSON.stringify(storeName))
+                        }
+
+                    } else {
+                        console.log("This book is not available");
+                    }
+
+
+                }else{
+                    console.log("Your input is wrong");
+                }
+
+
+
+            }
+
+
+        }
+
+        function searchIdByName(books, input) {
+            for (var i = 0; i < books.length; i++) {
+                if (books[i].name === input) {
+                    return books[i].id;
+
+                }
+            }
+            return "";
+        }
+
+        function searchNameById(books, input) {
+            for (var i = 0; i < books.length; i++) {
+                if (books[i].id === input) {
+                    return books[i].name;
+                }
+            }
+        }
+        function searchStoreById(stores,input){
+            for(var i=0;i<stores.length;i++){
+                if(stores[i].id === input){
+                    return stores[i].name;
+                }
+            }
+        }
+
+        function searchInStockById(stock, booksId) {
+            var result = [];
+            for (var j = 0; j < stock.length; j++) {
+                if (stock[j].bookid === booksId) {
+                    result.push(stock[j]);
+                }
+            }
+            return result;
+        }
+
+        function getStores() {
+            return [
+                {"name": "Wallmart", "id": "000001"},
+                {"name": "La Coqueta", "id": "000002"},
+                {"name": "Wallmart", "id": "000003"},
+                {"name": "Darkroom", "id": "000004"}
+            ];
+        }
+
+        function getBooks() {
+            return [
+                {"name": "Emma", "author": "Jane Austen", "id": "000001"},
+                {"name": "1984", "author": "George Orwell", "id": "000002"},
+                {"name": "Harry Potter", "author": "J. K. Rowling", "id": "000003"},
+                {"name": "Pride and Prejudice", "author": "Jane Austen", "id": "000004"},
+                {"name": "Sense and Sensibility", "author": "Jane Austen", "id": "000005"},
+                {"name": "The Great Gatsby", "author": "F.Scott Fitzgerald", "id": "000006"},
+                {"name": "Far away", "author": "George Orwell", "id": "000007"}
+
+            ];
+        }
+
+        function getStock() {
+            return [
+                {"storeid": "000001", "bookid": "000006", "quantity": "4"},
+                {"storeid": "000001", "bookid": "000005", "quantity": "6"},
+                {"storeid": "000002", "bookid": "000001", "quantity": "4"},
+                {"storeid": "000004", "bookid": "000002", "quantity": "3"},
+                {"storeid": "000003", "bookid": "000003", "quantity": "1"},
+                {"storeid": "000004", "bookid": "000004", "quantity": "2"},
+                {"storeid": "000002", "bookid": "000006", "quantity": "5"}
+
+            ]
+        }
+
+    </script>
+</head>
+<body>
+<center>
+    <p>Search your favourite book here!</p>
+    <p><input maxlength="25" size="40" id="source"></p>
+    <input value="Search" id="btn" button type="submit">
+    <ul id="target"></ul>
+</center>
+</body>
+</html>

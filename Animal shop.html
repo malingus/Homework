@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="animal_shop_style.css">
+
+    <script>
+        window.onload = function () {
+
+            var animals = [
+                {"name": "pig", "image": "images/animal1.jpg"},
+                {"name": "bear", "image": "images/animal3.jpg"},
+                {"name": "rat", "image": "images/animal4.jpg"}
+            ];
+            var orders = [];
+            console.log("orders is -" + orders);
+            var animalsList = document.getElementById("list");
+            for (var i = 0; i < animals.length; i++) {
+
+                var animalsItem = animals[i];
+                var animalsName = animals[i].name;
+                console.log("names are -" + animalsName);
+                var currentImage = animals[i].image;
+
+
+                var opt = document.createElement("option");
+                opt.innerHTML = animalsName;
+                opt.value = currentImage;
+                console.log("image is -" + currentImage);
+                animalsList.appendChild(opt);
+
+            }
+
+
+            document.getElementById("order").onclick = function () {
+
+
+                var currentPrice = document.getElementById("writePrice").value;
+                var currentQuan = document.getElementById("writeQuantity").value;
+
+
+                var select = document.getElementById("list");
+                var selectedText = select.options[select.selectedIndex].text;
+                var order = {};
+                order.name = selectedText;
+                order.price = currentPrice;
+                order.quantity = currentQuan;
+
+                orders.push(order);
+                console.log("orders push consist of -" + JSON.stringify(orders));
+
+
+                list = document.getElementById("listOfValues");
+                console.log(list);
+                var li = document.createElement('LI')
+                li.innerHTML = "Name : " + selectedText+ ", " +" Price : " + currentPrice+","+" Quantity : "+currentQuan;
+                list.appendChild(li);
+
+
+                list2 = document.getElementById("listOfValue");
+                console.log(list);
+                var dd = document.createElement('DD')
+                dd.innerHTML = selectedText+ ", "  + currentPrice+","+currentQuan;
+                list2.appendChild(dd);
+
+                /*document.getElementById("priceis").innerHTML = currentPrice;
+                document.getElementById("quanis").innerHTML = currentQuan;*/
+
+
+            }
+
+        }
+
+        function displayImage(item) {
+            console.log("it is in function" + JSON.stringify(item));
+            var image = document.getElementById("canvas");
+            console.log(image);
+            image.src = item.value;
+
+        }
+    </script>
+
+</head>
+<body>
+<center>
+    <table>
+
+        <tr>
+            <td>
+                <div align="center">
+                    <select id="list">
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div align="center">
+                <input type="text" id="writePrice">
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div align="center">
+                <input type="text" id="writeQuantity">
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div align="center">
+                    <button id="order">Buy!</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div align="center">
+                    <img id="canvas">
+                </div>
+            </td>
+        </tr>
+        </table>
+    <table id ="table1">
+        <tr>
+            <td>
+                <div align="center">
+                <ul id="listOfValues"></ul>
+                    </div>
+            </td>
+        </tr>
+    </table>
+   <dl id="listOfValue">
+        <dt>Name:</dt>
+        <dd id ="nameis"></dd>
+        <dt>Price:</dt>
+        <dd id ="priceIs"></dd>
+       <!--dd>100</dd-->
+        <dt>Quantity:</dt>
+        <dd id="quanis"></dd>
+       <!--dt>Text1:</dt>
+       <dd>text</dd>
+       <dd>text1</dd>
+       <dd>text2</dd-->
+    </dl>
+</center>
+<script>
+    /*document.getElementById("list").addEventListener("change", function () {
+     var select = document.getElementById("list");
+     var selectedText = select.options[select.selectedIndex].text;
+     var div =document.getElementById("nameis");
+     //document.getElementById("nameis").innerHTML = selectedText;
+     div.innerHTML = selectedText;
+     })*/
+    var select = document.getElementById("list");
+    var div = document.getElementById("nameis");
+    select.onchange = function () {
+
+        var selectedText = select.options[select.selectedIndex].text;
+        //div.innerHTML = selectedText;
+        displayImage(select.options[select.selectedIndex]);
+    }
+
+
+</script>
+</body>
+</html>

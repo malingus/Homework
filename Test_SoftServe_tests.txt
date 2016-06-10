@@ -1,0 +1,13 @@
+1. What does <fieldset> tag define?
+b) Groups related forms in a form
+
+2. What is the correct HTML for making a drop-down list?
+a) <select>
+
+3. The ... atrribute of image tag specifies the text to be shown in case of failure of displaying image?
+The alt attribute of image tag specifies the text to be shown in case of failure of displaying image.
+4. What is a document flow?
+a) It's a the model by which elements are rendered by default in the CSS specifications
+
+
+5. How to hide element so it will still takes up the same space as before?a) visibility:hidden;

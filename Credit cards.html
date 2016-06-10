@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="credit_cards.css">
+    <script>
+        var input;
+        var selectedText;
+        var select;
+        var cards = [
+            {"code": "1212121212121212", "first_name": "Sara", "last_name": "Kerrigan"},
+            {"code": "3434343434343434", "first_name": "November", "last_name": "Terra"},
+            {"code": "5656565656565656", "first_name": "Steve", "last_name": "Rogers"},
+            {"code": "7878787878787878", "first_name": "James", "last_name": "Barns"}
+        ];
+        window.onload = function () {
+            list = document.getElementById("list");
+
+
+            var select = document.getElementById("imageList");
+            select.onchange = function () {
+                setImage()
+            };
+
+
+            document.getElementById("btn").onclick = function () {
+                input = document.getElementById("input").value;
+                displayText();
+            };
+
+
+            function needToDisplay(element) {
+                if (element.code === input) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            function displayText() {
+                var foundCard = false;
+                for (var i = 0; i < cards.length; i++) {
+                    var displayCheck = needToDisplay(cards[i]);
+                    if (displayCheck) {
+                        foundCard = true;
+                        console.log(cards[i].first_name + cards[i].last_name);
+                        var nameDiv = document.getElementById("div2");
+                        nameDiv.innerHTML = "User is -" + cards[i].first_name + " " + cards[i].last_name;
+                    }
+
+                }
+
+                if (foundCard === false) {
+                    var errorDiv = document.getElementById("div3");
+                    errorDiv.innerHTML = "Sorry,your input is invalid";
+                    console.log("false");
+                }
+
+                }
+
+
+
+            function setImage() {
+                var img = document.getElementById("canvas");
+                img.src = select.options[select.selectedIndex].value;
+                return false;
+            }
+        };
+
+
+    </script>
+</head>
+<body>
+<div align="center">
+    <select id="imageList">
+        <option value="images/visa.jpg">visa</option>
+        <option value="images/paypal.jpg">paypal</option>
+        <option value="images/mastercard.jpg">mastercard</option>
+    </select>
+    <img id="canvas" src="images/visa.jpg"/>
+    <div id="inputbtn">
+        <input type="tel" id="input"
+               placeholder="9999 9999 9999 9999"/>
+        <button id="btn">Pay</button>
+    </div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+        <html>
+<head>
+    <title></title>
+
+</head>
+<body>
+<center>
+
+    <select name="scripts"id ="scripts">
+        <option value ="cat">Text</option>
+        <option value ="bat">Text2</option>
+        <option value ="rat">Text3</option>
+    </select>
+    <!--button id="button">Click!</button-->
+    <input type="text" name="textfield" id="textfield" onClick="checkPrice()">
+
+</center>
+<script>
+    var select = document.getElementById("scripts");
+    var inputs = document.getElementById("textfield");
+    select.onchange = function(){
+        var selectedText = select.options[select.selectedIndex].text;
+        inputs.value = selectedText;
+    }
+
+</script>
+</body>
+</html>

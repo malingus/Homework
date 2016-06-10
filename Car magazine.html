@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car magazine</title>
+    <link rel="stylesheet" type="text/css" href="car_mag_style.css">
+    <script>
+        window.onload = function () {
+
+            console.log("Is load");
+            var index = 0;
+            cars = [
+                {"name": "Peugeot 108", "price": "6,995&pound;", "image": "images/car(1).jpg"},
+                {"name": "Volkswagen Beetle", "price": "20,145&pound;", "image": "images/car(3).jpg"},
+                {"name": "Volkswagen Beetle Classic", "price": "80,000&pound;", "image": "images/car(2).jpg"},
+                {"name": "Volkswagen Bee", "price": "10,145&pound;", "image": "images/car(3).jpg"}
+            ];
+            var prevButton = document.getElementById("previous");
+            var nextButton = document.getElementById("next");
+            var minIndex = 0;
+            var maxIndex = cars.length - 1;
+            enableButtons();
+            showDetails();
+            prevButton.onclick = function () {
+                console.log("Click!");
+
+                //console.log(index);
+                if (index - 1 < minIndex) {
+                    console.log("wrong " + index);
+                } else {
+                    index--;
+                    console.log(index);
+                }
+
+
+                enableButtons();
+
+                showDetails();
+            };
+
+
+            nextButton.onclick = function () {
+                console.log("Click!");
+
+                //console.log(index);
+                if (index + 1 > maxIndex) {
+                    console.log("wrong " + index);
+                } else {
+                    index++;
+                    console.log(index);
+                }
+
+                enableButtons();
+                showDetails();
+
+            }
+
+            function enableButtons() {
+                if (index == minIndex) {
+                    prevButton.disabled = true;
+                } else {
+                    prevButton.disabled = false;
+
+                }
+                if (index == maxIndex) {
+                    nextButton.disabled = true;
+                } else {
+                    nextButton.disabled = false;
+                }
+
+            }
+
+            function showDetails() {
+                var currentName = cars[index].name;
+                var currentPrice = cars[index].price;
+                var currentImage = cars[index].image;
+
+                document.getElementById("nameis").innerHTML = currentName;
+                document.getElementById("priceis").innerHTML = currentPrice;
+                var img = document.getElementById("canvas");
+                img.src = currentImage;
+
+                console.log("index =" + JSON.stringify(cars[index]));
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+<center>
+    <table>
+        <tr>
+            <td colspan="2">
+                <div align="center" id="nameis"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div align="center" id="priceis"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="previous">Previous Car</button>
+            </td>
+            <td>
+                <button id="next">Next Car</button>
+            </td>
+        </tr>
+        <img id="canvas">
+    </table>
+</center>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+        window.onload = function () {
+            countries = getCity();
+
+
+            for (var i = 0; i < countries.length; i++) {
+                var countryItem = countries[i];
+                var countryName = countries[i].name;
+                console.log("This country name is - " + JSON.stringify(countryName));
+                for (var j = 0; j < countryItem.cities.length; j++) {
+                    var cityItem = countryItem.cities[j];
+                    var cityName = countryItem.cities[j].name;
+                    console.log("This city name is - " + JSON.stringify(cityName));
+                    for (var k = 0; k < cityItem.shops.length; k++) {
+                        var shopItem = cityItem.shops[k];
+                        var shopName = cityItem.shops[k].name;
+                        console.log("This shop name is - " + JSON.stringify(shopName))
+                        for (var q = 0; q < shopItem.books.length; q++) {
+                            var bookItem = shopItem.books[q];
+                            var bookName = shopItem.books[q].name;
+                            var bookAuthor = shopItem.books[q].author;
+                            console.log("This book name is - " + bookName + "," + " its author is - " + JSON.stringify(bookAuthor));
+                            console.log("This city name is - " + JSON.stringify(cityName) + "," + " this shop name is - " + JSON.stringify(shopName) +
+                                    "," + " this book name is - " + JSON.stringify(bookName) + "," + " its author is - " + JSON.stringify(bookAuthor));
+
+                        }
+                    }
+                }
+
+            }
+            function getCity() {
+                return [{
+                    "name": "America", "cities": [{
+                        "name": "Washington", "shops": [{
+                            "name": "Wallmart", "books": [{"name": "Emma", "author": "Jane Austen"}]
+                        },
+                            {"name": "Wall-e", "books": [{"name": "Abathur", "author": "Sara Kerrigan"}]} ]
+                    }]
+                },
+                    {
+                        "name": "France", "cities": [{
+                        "name": "Paris", "shops": [{
+                            "name": "La Coqueta", "books": [{"name": "1984", "author": "Jeorge Orwell"}]
+                        },{"name": "Xul", "books": [{"name": "Poisoned thuth", "author": "Sneak McJersey"}]}
+                        ]
+                    }]
+                    }];
+
+
+            }
+        }
+
+
+    </script>
+</head>
+</html>

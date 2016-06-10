@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!--link rel="stylesheet" type="text/css" href="goods_select_one.css."-->
+    <script>
+        var input;
+        var selectedText;
+        var q;
+        var y;
+        var w;
+        var r;
+        var goods = [
+            {"name": "apple", "price": 2, "quantity": "1"},
+            {"name": "orange", "price": 5, "quantity": "1"},
+            {"name": "tomato", "price": 3, "quantity": "1"},
+            {"name": "grape", "price": 8, "quantity": "1"},
+            {"name": "strawberry", "price": 12, "quantity": "1"},
+            {"name": "apricot", "price": 6, "quantity": "1"},
+            {"name": "avocado", "price": 22, "quantity": "1"},
+            {"name": "banana", "price": 10, "quantity": "1"},
+            {"name": "carrot", "price": 7, "quantity": "1"},
+            {"name": "cherry", "price": 8, "quantity": "1"}
+
+        ];
+
+
+
+        window.onload = function () {
+            var shoppingCart = [];
+
+            var orderList = document.getElementById("orderList");
+            var selectList = document.getElementById("goodsList");
+            selectList.onchange = function () {
+                selectedText = selectList.options[selectList.selectedIndex].text;
+                console.log(selectedText);
+            };
+            document.getElementById("btn").onclick = function () {
+                input = document.getElementById("input").value;
+                displayList();
+            };
+
+            function needToDisplay(element) {
+                if (element.name === "apple" && selectedText === "apple") {
+                    return true;
+                } else {
+                    if (element.name === "orange" && selectedText === "orange") {
+                        return true;
+                    } else {
+                        if (element.name === "tomato" && selectedText === "tomato") {
+                            return true;
+                        } else {
+                            if (element.name === "grape" && selectedText === "grape") {
+                                return true;
+                            } else {
+                                if (element.name === "strawberry" && selectedText === "strawberry") {
+                                    return true;
+                                } else {
+                                    if (element.name === "apricot" && selectedText === "apricot") {
+                                        return true;
+                                    } else {
+                                        if (element.name === "avocado" && selectedText === "avocado") {
+                                            return true;
+                                        } else {
+                                            if (element.name === "banana" && selectedText === "banana") {
+                                                return true;
+                                            } else {
+                                                if (element.name === "carrot" && selectedText === "carrot") {
+                                                    return true;
+                                                } else {
+                                                    if (element.name === "cherry" && selectedText === "cherry") {
+                                                        return true;
+                                                    }
+                                                    {
+                                                        return false;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            function displayList() {
+                countGoods();
+                for (var i = 0; i < goods.length; i++) {
+                    var displayCheck = needToDisplay(goods[i]);
+                    if (displayCheck) {
+                        var li = document.createElement('LI');
+                        li.innerHTML = goods[i].name + ": " + goods[i].quantity + " kilos" + " - " + goods[i].price + " dollars!";
+                        orderedGoods.appendChild(li);
+                        shoppingCart.push(input,q);
+                        console.log(shoppingCart);
+
+                    } else {
+                        console.log("false");
+                    }
+                }
+            }
+
+            /*function displayCart() {
+                countGoods();
+                for (var i = 0; i < goods.length; i++) {
+                    var displayCheck = needToDisplay(goods[i]);
+                    if (displayCheck) {
+                        var li1 = document.createElement('LI');
+                        li1.innerHTML = goods[i].name + ": " + input + " kilos" + " - " + q + " dollars!";
+                        orderList.appendChild(li1);
+                        shoppingCart.push(input,q);
+                        console.log(shoppingCart);
+                    } else {
+                        console.log("false");
+                    }
+
+                }
+            };*/
+
+            function countGoods() {
+                var x = input;
+                var y = goodsPrice(selectedText, goods);
+                q = x * y;
+            }
+
+        };
+        function goodsPrice(select, goods) {
+            for (var i = 0; i < goods.length; i++) {
+                if (select === goods[i].name) {
+                    return goods[i].price;
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div id="goods">
+    <p>Goods:</p>
+    <select id="goodsList">
+        <option id="apple">apple</option>
+        <option id="orange">orange</option>
+        <option id="tomato">tomato</option>
+        <option id="grape">grape</option>
+        <option id="strawberry">strawberry</option>
+        <option id="apricot">apricot</option>
+        <option id="avocado">avocado</option>
+        <option id="banana">banana</option>
+        <option id="cherry">cherry</option>
+        <option id="carrot">carrot</option>
+    </select>
+</div>
+<div id="listOfGoods">
+    <ul id="orderedGoods"></ul>
+</div>
+<div id="listOfOrders">
+    <ul id="orderList"></ul>
+</div>
+
+<div id="quantity">
+    <p>Quantity:</p>
+    <input type="number" id="input">
+    <button id="btn">Count</button>
+</div>
+<div id="totalSum"></div>
+<form action="Registration%20form%20for%20goods.html">
+    <button type="submit">Buy</button>
+</form>
+</body>
+</html>

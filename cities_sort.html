@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>No title</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            function sortC(a, b) {
+                if (a > b)return 1;
+                if (a < b)return -1;
+            }
+
+
+
+
+
+            var countries = [
+                "america",
+                "france",
+                "germany",
+                "egypt",
+                "rome",
+                "canada"
+            ];
+            var i;
+
+            for (i = 0; i < countries.length; i++) {
+                var thirdLetter = countries[i].charAt(2).toUpperCase();
+
+                console.log(thirdLetter);
+            }
+
+            console.log(countries.sort());
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+    </script>
+</head>
+
+</html>

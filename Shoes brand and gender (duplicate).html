@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="shoes_with_checkbox.css">
+    <script>
+        var selectedText;
+        var seasonText;
+        var shoes = [
+            {"type": "sandals", "brand": "Adidas", "gender": "male", "images": "images/sandals.jpg", "size": "37","season":"summer"},
+            {
+                "type": "flip flops",
+                "brand": "Puma",
+                "gender": "female",
+                "images": "images/flip flops3.jpeg",
+                "size": "38",
+                "season": "summer"
+            },
+            {"type": "trainer", "brand": "Adidas", "gender": "female", "images": "images/trainers4.jpg", "size": "39","season":"demi-season"},
+            {
+                "type": "boat shoes",
+                "brand": "Ecco",
+                "gender": "female",
+                "images": "images/boat shoes2.jpg",
+                "size": "40",
+                "season": "summer"
+            },
+            {
+                "type": "boat shoes",
+                "brand": "Clarks",
+                "gender": "male",
+                "images": "images/boat shoes2.jpg",
+                "size": "37",
+                "season": "summer"
+            },
+            {
+                "type": "trainer",
+                "brand": "Puma",
+                "gender": "male",
+                "images": "images/trainers3.jpg",
+                "size": "38",
+                "season": "demi-season"
+            },
+            {
+                "type": "biker boots",
+                "brand": "Clarks",
+                "gender": "female",
+                "images": "images/biker boots2.jpg",
+                "size": "39",
+                "season": "demi-season"
+            },
+            {
+                "type": "moccassins",
+                "brand": "Ecco",
+                "gender": "female",
+                "images": "images/moccassins2.jpg",
+                "size": "40",
+                "season": "demi-season"
+            },
+            {
+                "type": "moccassins",
+                "brand": "Casadei",
+                "gender": "male",
+                "images": "images/moccassins3.jpg",
+                "size": "37",
+                "season": "demi-season"
+            }
+
+        ];
+        window.onload = function () {
+            var box1 = document.getElementById("adidas");
+            var box2 = document.getElementById("casadei");
+            var box3 = document.getElementById("clarks");
+            var box4 = document.getElementById("ecco");
+            var box5 = document.getElementById("puma");
+            var box6 = document.getElementById("37");
+            var box7 = document.getElementById("38");
+            var box8 = document.getElementById("39");
+            var box9 = document.getElementById("40");
+
+            list = document.getElementById("list");
+            var selectList = document.getElementById("selectList");
+            selectList.onchange = function () {
+                selectedText = selectList.options[selectList.selectedIndex].text;
+                console.log(selectedText);
+                displayList()
+            };
+            var seasonList = document.getElementById("seasonList");
+            seasonList.onchange = function () {
+                seasonText = seasonList.options[seasonList.selectedIndex].text;
+                console.log(seasonText);
+                displayList()
+            };
+
+            box1.onclick = function () {
+                displayList();
+
+            };
+            box2.onclick = function () {
+                displayList();
+            };
+
+            box3.onclick = function () {
+                displayList();
+            };
+            box4.onclick = function () {
+                displayList();
+            };
+            box5.onclick = function () {
+                displayList();
+            };
+            box6.onclick = function () {
+                displayList()
+            };
+            box7.onclick = function () {
+                displayList()
+            };
+            box8.onclick = function () {
+                displayList()
+            };
+            box9.onclick = function () {
+                displayList()
+            };
+
+        };
+
+        function needToDisplay(element) {
+            console.log("in seleted text -" + selectedText);
+            console.log("element gender - " + element.gender);
+            if (document.getElementById("adidas").checked && element.brand === "Adidas" &&
+                    (element.gender === selectedText || selectedText === "both") && (element.season === seasonText || seasonText === "all seasons")
+                    && (document.getElementById("37").checked === false || (document.getElementById("37").checked &&
+                    element.size === "37")) && (document.getElementById("39").checked === false
+                    || (document.getElementById("39").checked && element.size === "39")) && (document.getElementById("40").checked === false
+                    || (document.getElementById("40").checked && element.size === "40"))) {
+                return true;
+            } else {
+                if (document.getElementById("casadei").checked && element.brand === "Casadei" &&
+                        (element.gender === selectedText || selectedText === "both") && (element.season === seasonText || seasonText === "all seasons") &&
+                        (document.getElementById("37").checked === false
+                        || (document.getElementById("37").checked && element.size === "37")) && (document.getElementById("39").checked === false
+                        || (document.getElementById("39").checked && element.size === "39")) && (document.getElementById("38").checked === false
+                        || (document.getElementById("38").checked && element.size === "38")) && (document.getElementById("40").checked === false
+                        || (document.getElementById("40").checked && element.size === "40"))) {
+                    return true;
+                } else {
+                    if (document.getElementById("clarks").checked &&
+                            element.brand === "Clarks" && (element.gender === selectedText || selectedText === "both") && (element.season === seasonText || seasonText === "all seasons")
+                            && (document.getElementById("37").checked === false
+                            || (document.getElementById("37").checked && element.size === "37")) && (document.getElementById("39").checked === false
+                            || (document.getElementById("39").checked && element.size === "39")) && (document.getElementById("38").checked === false
+                            || (document.getElementById("38").checked && element.size === "38")) && (document.getElementById("40").checked === false
+                            || (document.getElementById("40").checked && element.size === "40"))) {
+                        return true
+                    } else {
+                        if (document.getElementById("ecco").checked && element.brand === "Ecco" &&
+                                (element.gender === selectedText || selectedText === "both") && (element.season === seasonText || seasonText === "all seasons")
+                                && (document.getElementById("37").checked === false
+                                || (document.getElementById("37").checked && element.size === "37")) && (document.getElementById("39").checked === false
+                                || (document.getElementById("37").checked && element.size === "39")) && (document.getElementById("38").checked === false
+                                || (document.getElementById("38").checked && element.size === "38")) && (document.getElementById("40").checked === false
+                                || (document.getElementById("40").checked && element.size === "40"))) {
+                            return true
+                        } else {
+                            if (document.getElementById("puma").checked && element.brand === "Puma" &&
+                                    (element.gender === selectedText || selectedText === "both") && (element.season === seasonText || seasonText === "all seasons")
+                                    && (document.getElementById("37").checked === false
+                                    || (document.getElementById("37").checked && element.size === "37")) && (document.getElementById("39").checked === false
+                                    || (document.getElementById("39").checked && element.size === "39")) && (document.getElementById("38").checked === false
+                                    || (document.getElementById("38").checked && element.size === "38")) && (document.getElementById("40").checked === false
+                                    || (document.getElementById("40").checked && element.size === "40"))) {
+                                return true
+                            } else {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function clearList(list) {
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
+            }
+
+        }
+        function displayList() {
+            clearList(list);
+            for (var i = 0; i < shoes.length; i++) {
+                var displayCheck = needToDisplay(shoes[i]);
+                if (displayCheck) {
+
+                    console.log(shoes[i].type);
+                    var li = document.createElement('LI');
+                    li.innerHTML = "Shoes type is -" + shoes[i].type;
+                    list.appendChild(li);
+                    var li2 = document.createElement('img');
+                    li2.src = shoes[i].images;
+                    list.appendChild(li2);
+                } else {
+                    console.log("false");
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div id="div1">
+    <select id="selectList">
+        <option>both</option>
+        <option>male</option>
+        <option>female</option>
+    </select>
+    <select id="seasonList">
+        <option>all seasons</option>
+        <option>winter</option>
+        <option>summer</option>
+        <option>demi-season</option>
+    </select>
+    <p><input type="checkbox" id="adidas"/>Adidas<br>
+        <input type="checkbox" id="casadei"/>Casadei<br>
+        <input type="checkbox" id="clarks"/>Clarks<br>
+        <input type="checkbox" id="ecco"/>Ecco<br>
+        <input type="checkbox" id="puma"/>Puma</p>
+
+    <p><input type="checkbox" id="37"/>37<br>
+        <input type="checkbox" id="38"/>38<br>
+        <input type="checkbox" id="39"/>39<br>
+        <input type="checkbox" id="40"/>40</p>
+</div>
+<div id="div2">
+    <ul id="list"></ul>
+
+</div>
+</body>
+</html>

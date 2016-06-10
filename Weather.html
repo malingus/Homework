@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather</title>
+    <link rel="stylesheet" type="text/css" href="weather_style.css.">
+    <script>
+        window.onload = function () {
+            document.getElementById("btn").onclick = function () {
+
+                var currentDate = document.getElementById("calendar").value;
+                console.log(currentDate);
+                var dateInWeather = searchDateInWeather(weather, currentDate);
+                if (dateInWeather === currentDate) {
+                    console.log("Today is - " + dateInWeather);
+
+
+                    var totalResultObj = searchInWeatherByDate(weather, dateInWeather);
+                    if (totalResultObj.length > 0) {
+                        for (i = 0; i < totalResultObj.length; i++) {
+                            var currentWeather = totalResultObj[i];
+                            console.log("Current date information is -" + JSON.stringify(currentWeather));
+
+                            var currentTemperature = currentWeather.temperature;
+                            console.log("Today's temperature is - " + currentTemperature);
+                            var currentWind = currentWeather.windvelocity;
+                            console.log("Today's wind velocity is - " + currentWind);
+                            var currentCondition = currentWeather.condition;
+                            console.log("Today's condition is - " + currentCondition);
+                            console.log("Today is - " + dateInWeather + "," + "it is " + currentTemperature + " degrees" + ", " + currentWind + ", " + currentCondition)
+
+                            var currentImage = currentWeather.image;
+
+                            document.getElementById("dateis").innerHTML = dateInWeather;
+                            document.getElementById("windis").innerHTML = currentWind;
+                            document.getElementById("tempis").innerHTML = currentTemperature;
+                            document.getElementById("condis").innerHTML = currentCondition;
+
+                            var img = document.getElementById("canvas");
+                           img.src = currentImage;
+
+                        }
+                    }
+                } else {
+                    console.log("This date is not available");
+                }
+            };
+            weather = [
+                {
+                    "date": "2016-04-25",
+                    "temperature": "1&deg;",
+                    "windvelocity": "5m per sec",
+                    "condition": "mix of sun and clouds",
+                    "image": "images/sun_and_cloud.jpg"
+                },
+                {
+                    "date": "2016-04-26",
+                    "temperature": "0&deg;",
+                    "windvelocity": "5m per sec",
+                    "condition": "snowy",
+                    "image": "images/snow.jpg"
+                },
+                {
+                    "date": "2016-04-27",
+                    "temperature": "11 &deg;",
+                    "windvelocity": "5m per sec",
+                    "condition": "rainy",
+                    "image": "images/rain.jpg"
+                },
+                {
+                    "date": "2016-04-28",
+                    "temperature": "17 &deg;",
+                    "windvelocity": "5m per sec",
+                    "condition": "mainly cloudy",
+                    "image": "images/clouds.jpg"
+                },
+                {
+                    "date": "2016-04-29",
+                    "temperature": "20 &deg;",
+                    "windvelocity": "5m per sec",
+                    "condition": "sunny",
+                    "image": "images/sun.jpg"
+                },
+                {
+                    "date": "2016-04-30",
+                    "temperature": "24 &deg;",
+                    "windvelocity": "5m per sec",
+                    "condition": "sunny",
+                    "image": "images/sun.jpg"
+                },
+                {
+                    "date": "2016-05-01",
+                    "temperature": "27 &deg;",
+                    "windvelocity": "5m per sec",
+                    "condition": "sunny",
+                    "image": "images/sun.jpg"
+                }
+            ]
+
+        };
+        function searchDateInWeather(weather, input) {
+            for (var i = 0; i < weather.length; i++) {
+                if (weather[i].date === input) {
+                    return weather[i].date;
+                }
+            }
+        }
+        function searchInWeatherByDate(weather, weatherDate) {
+            var resultObj = [];
+            for (var i = 0; i < weather.length; i++) {
+                if (weather[i].date === weatherDate) {
+                    resultObj.push(weather[i]);
+                }
+            }
+            return resultObj;
+        }
+    </script>
+</head>
+<body>
+<center>
+    <p>Choose date: <input type="date" name="calendar" id="calendar">
+        <input type="submit" value="Show" id="btn">
+    <table>
+        <tr>
+            <td>
+                <div align="center" id="dateis"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div align="center" id="windis"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div align="center" id="tempis"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div align="center" id="condis"></div>
+            </td>
+        </tr>
+        <img id="canvas">
+    </table>
+
+</center>
+</body>
+</html>

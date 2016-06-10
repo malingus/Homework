@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+        var selectedCity;
+        var cities = [
+            {
+                "name": "Paris", "shops": [
+                {
+                    "name": "La Coqueta", "books": [
+                    {"name": "Harry Potter", "author": "J. K. Rowling"},
+                    {"name": "1984", "author": "George Orwell"},
+                    {"name": "Pride and Prejudice", "author": "Jane Austen"}
+                ]
+                },
+                {
+                    "name": "Prada", "books": [
+                    {"name": "Animal Farm", "author": "George Orwell"},
+                    {"name": "The Great Gatsby", "author": "F.Scott Fitzgerald"},
+                    {"name": "Hamlet", "author": "Willam Shakespeare"}
+                ]
+                },
+                {
+                    "name": "LV", "books": [
+                    {"name": "Macbeth", "author": "Willam Shakespeare"},
+                    {"name": "Sense and Sensibility", "author": "Jane Austen"},
+                    {"name": "A Tale of Two Cities", "author": "Charles Dickens"}
+
+
+                ]
+                }
+            ]
+            },
+            {
+                "name": "London", "shops": [
+                {
+                    "name": "Darkroom", "books": [
+                    {"name": "Emma", "author": "Jane Austen"},
+                    {"name": "Macbeth", "author": "Willam Shakespeare"},
+                    {"name": "Hamlet", "author": "Willam Shakespeare"}
+                ]
+                },
+                {
+                    "name": "Paradise", "books": [
+                    {"name": "Harry Potter", "author": "J. K. Rowling"},
+                    {"name": "1984", "author": "George Orwell"},
+                    {"name": "A Tale of Two Cities", "author": "Charles Dickens"}
+                ]
+                },
+                {
+                    "name": "Burberry", "books": [
+                    {"name": "Animal Farm", "author": "George Orwell"},
+                    {"name": "The Great Gatsby", "author": "F.Scott Fitzgerald"},
+                    {"name": "1984", "author": "George Orwell"}
+                ]
+                }
+            ]
+            }
+        ];
+        window.onload = function () {
+
+            for (var i = 0; i < cities.length; i++) {
+                var cityItem = cities[i];
+                var cityName = cities[i].name;
+                var shoesList = document.getElementById("cityList");
+                var opt = document.createElement("option");
+                opt.innerHTML = cityName;
+                console.log("city is - " + JSON.stringify(cityName));
+                shoesList.appendChild(opt);
+
+            }
+
+
+        }
+
+    </script>
+</head>
+<body>
+<div align="center">
+    <select id="cityList"></select>
+    <select id="shopsList"></select>
+    <select id="booksList"></select>
+</div>
+<script>
+    var select = document.getElementById("cityList");
+    var inputs = document.getElementById("shopsList");
+    var booksInput = document.getElementById("booksList");
+
+    select.onchange = function () {
+        console.log("onchange works");
+        var selectedText = select.options[select.selectedIndex].text;
+        console.log(selectedText);
+
+
+        var search = searchShopInArray(cities, selectedText);
+        selectedCity = search;
+        for (var i = 0; i < search.shops.length; i++) {
+
+            var shopItem = search.shops[i];
+            console.log("search item is-" + JSON.stringify(shopItem));
+            var shopName = search.shops[i].name;
+
+            var opt2 = document.createElement("option");
+            opt2.innerHTML = shopName;
+            console.log("shop is - " + JSON.stringify(shopName));
+            inputs.appendChild(opt2);
+
+
+        }
+    };
+    inputs.onchange = function () {
+        console.log("onchange 2 works");
+        console.log(selectedCity);
+
+        var selectedShop1 = selectedCity.shops;
+        console.log("selected shop in selectedCity is -" + selectedShop1);
+
+        var selectedShops = inputs.options[inputs.selectedIndex].text;
+        console.log("selected shop is -" + selectedShops);
+
+        var shopSearch = searchBooksInShop(selectedShop1, selectedShops);
+        for (var i = 0; i < shopSearch.books.length; i++) {
+            var bookItem = shopSearch.books[i];
+            var bookName = shopSearch.books[i].name;
+
+            var opt3 = document.createElement("option");
+            opt3.innerHTML = bookName;
+            console.log("book is - " + JSON.stringify(bookName));
+            booksInput.appendChild(opt3);
+        }
+
+
+
+    };
+
+    function searchShopInArray(cities, listName) {
+        for (var i = 0; i < cities.length; i++) {
+            if (cities[i].name === listName) {
+                return cities[i];
+            }
+        }
+        return "";
+    }
+    function searchBooksInShop(shops, listName) {
+        for (var j = 0; j < shops.length; j++) {
+            if (shops[j].name === listName) {
+                return shops[j];
+            }
+        }
+        return "";
+    }
+
+</script>
+</body>
+</html>

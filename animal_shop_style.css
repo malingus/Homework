@@ -1,0 +1,16 @@
+body {
+	background-color:#09F;
+}
+ul {
+	color:white;
+	font-size:24px;
+}
+	
+#table1 {
+	border:dashed #FFF;
+}
+dt,dd {
+	margin: 4px,0;
+	padding:2 px,5px,2px,5px;
+	
+}

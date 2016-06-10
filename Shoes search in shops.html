@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+        var shoes = [
+            {
+                "type": "boots", "adress": [
+                {"city": "Paris", "name": "La Coqueta", "adress": "Maddyson Avenue,12", "quantity": "3 pairs"},
+                {"city": "Washimgton", "name": "Prada", "adress": "Amanda St.", "quantity": "5 pairs"},
+                {"city": "Paris", "name": "LV", "adress": "Pink St.", "quantity": "not available"}
+            ]
+            },
+            {
+                "type": "women shoes", "adress": [
+                {"city": "London", "name": "Darkroom", "adress": "Nevers St.,1", "quantity": "6 pairs"},
+                {"city": "London", "name": "Paradise", "adress": "Queen Elizabeth St.", "quantity": "not available"}
+            ]
+            },
+            {
+                "type": "sneakers", "adress": [
+                {"city": "NY", "name": "Burberry", "adress": "Bucky St.", "quantity": "10 pairs"},
+                {"city": "NY", "name": "Adidas", "adress": "J.Washington St.", "quantity": "1 pair"},
+                {"city": "NY", "name": "Puma", "adress": "Golden St.,125", "quantity": "not available"}
+            ]
+            },
+
+        ];
+        window.onload = function () {
+
+            for (var i = 0; i < shoes.length; i++) {
+                var shoesItem = shoes[i];
+                var shoesName = shoes[i].type;
+
+
+                var shoesList = document.getElementById("shoesList");
+                var opt = document.createElement("option");
+                opt.innerHTML = shoesName;
+                console.log("shoe is - " + JSON.stringify(shoesName));
+                shoesList.appendChild(opt);
+            }
+
+            document.getElementById("btn").onclick = function () {
+
+
+                var select = document.getElementById("shoesList");
+                var selectedText = select.options[select.selectedIndex].text;
+
+                var search = searchObjectByType(shoes, selectedText);
+
+                list = document.getElementById("resultList");
+                console.log(list);
+                clearList(list);
+                for (var i = 0; i < search.adress.length; i++) {
+
+                    var shoesCity = search.adress[i].city;
+                    var shoesShop = search.adress[i].name;
+                    var shoesAdress = search.adress[i].adress;
+                    var shoesQuan = search.adress[i].quantity;
+
+
+                    var li = document.createElement('LI')
+                    li.innerHTML = "City: " + shoesCity + "," + shoesAdress + " shop: " + shoesShop + "," + shoesQuan;
+                    list.appendChild(li);
+
+
+                }
+            }
+            function clearList(list) {
+                while (list.firstChild) {
+                    list.removeChild(list.firstChild);
+                }
+            }
+
+        }
+
+    </script>
+
+</head>
+<body>
+<div align="center">
+    <select id="shoesList"></select>
+    <input type="submit" value="Search" id="btn">
+    <ul id="resultList"></ul>
+</div>
+<script>
+    var select = document.getElementById("shoesList");
+    var inputs = document.getElementById("resultList");
+    select.onchange = function () {
+        console.log("onchange works");
+        var selectedText = select.options[select.selectedIndex].text;
+        console.log(selectedText);
+
+        var search = searchObjectByType(shoes, selectedText);
+
+    }
+
+    function searchObjectByType(shoe, listName) {
+        for (var i = 0; i < shoes.length; i++) {
+            if (shoes[i].type === listName) {
+                return shoes[i];
+            }
+        }
+        return "";
+    }
+
+</script>
+</body>
+</html>

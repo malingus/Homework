@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>12344321</title>
+    <script>
+        window.onload = function () {
+
+            var words2 = ["cat", "rat", "two words", "black cat"];
+            console.log(words2);
+
+            for (var i = 0; i < words2.length; i++) {
+                var test = reverseArr(words2[i]);
+                console.log(" Normal element = " + [i] + words2[i] + " Reversed element =" + test);
+                words2[i] = test;
+            }
+            function reverseArr(s) {
+
+                return s.split("").reverse().join("");
+            }
+
+            console.log(words2);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

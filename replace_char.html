@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+        <html>
+<head>
+    <title></title>
+    <script>
+        window.onload = function () {
+            var cars = [
+                "Audi", "BMW", "Bugatti", "Honda"
+            ]
+            var newCar = cars.indexOf("BMW");
+            if (newCar !== -1) {
+                cars[1] = "Mercedes";
+
+            }
+            var newCar2 = cars.indexOf("Bugatti");
+            if(newCar2 !== -1){
+                cars[2] = "Skoda";
+            }
+
+            console.log(cars);
+
+
+
+
+        }
+    </script>
+</head>
+</html>

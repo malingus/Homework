@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="cities_shops_select_style.css">
+    <script>
+        var cities = [
+            {
+                "name": "Paris", "shops": [
+                {"name": "La Coqueta, Maddyson Avenue,12"},
+                {"name": "LV, Pink St."},
+                {"name": "Prada,Amanda St."}
+            ]
+            },
+            {
+                "name": "London", "shops": [
+                {"name": "Darkroom, Nevers St.,1"},
+                {"name": "Paradise,Queen Elizabeth St."},
+                {"name": "Burberry,Bucky St."}
+            ]
+            },
+            {
+                "name": "NY", "shops": [
+                {"name": "Apple,North Avenue 125"},
+                {"name": "Adidas,J.Washington St."},
+                {"name": "Puma,Golden St.,125"}
+            ]
+            }
+        ];
+
+
+        window.onload = function () {
+
+
+            for (var i = 0; i < cities.length; i++) {
+                var cityItem = cities[i];
+                var cityName = cities[i].name;
+                console.log(cityName);
+
+                var citiesList = document.getElementById("cityList");
+                var opt = document.createElement("option");
+                opt.innerHTML = cityName;
+                console.log("city is - " + cityName);
+                citiesList.appendChild(opt);
+            }
+
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+    <div align ="center">
+    <select id="cityList"></select>
+    <select id="shopsList"></select>
+        </div>
+
+<script>
+    var select = document.getElementById("cityList");
+    var inputs = document.getElementById("shopsList");
+    select.onchange = function () {
+        console.log("onchange works");
+        var selectedText = select.options[select.selectedIndex].text;
+        console.log(selectedText);
+
+        var search = searchObjectByName(cities, selectedText);
+        console.log("search is - " + JSON.stringify(search));
+
+        clearOptions("shopsList");
+        for (var j = 0; j < search.shops.length; j++) {
+            var shopsName = search.shops[j].name;
+
+            var opt2 = document.createElement("option");
+            opt2.innerHTML = shopsName;
+            console.log("shop is - " + JSON.stringify(shopsName));
+            inputs.appendChild(opt2);
+        }
+    }
+    function searchObjectByName(cities, listName) {
+        for (var i = 0; i < cities.length; i++) {
+            if (cities[i].name === listName) {
+                return cities[i];
+            }
+        }
+        return "";
+    }
+    function clearOptions(id) {
+        document.getElementById(id).options.length = 0;
+    }
+</script>
+</body>
+</html>
