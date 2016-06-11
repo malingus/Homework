@@ -91,10 +91,19 @@
                     var displayCheck = needToDisplay(goods[i]);
                     if (displayCheck) {
                         var li = document.createElement('LI');
-                        li.innerHTML = goods[i].name + ": " + goods[i].quantity + " kilos" + " - " + goods[i].price + " dollars!";
+                        li.innerHTML = goods[i].name + ": " + goods[i].quantity + " kg" + " - " + goods[i].price + " dollars!";
                         orderedGoods.appendChild(li);
-                        shoppingCart.push(input,q);
+                        var itemCart = {name:goods[i].name,quantity:input,price:q};
+                        shoppingCart.push(itemCart);
                         console.log(shoppingCart);
+                        var total =0;
+                        for(var j=0;j< shoppingCart.length;j++){
+                            //var totalQuan = total +shoppingCart[j].quantity;
+                             total = total+shoppingCart[j].price;
+                            var div = document.getElementById("totalSum");
+                            div.innerHTML = "total: "+total+" dollars";
+
+                        }
 
                     } else {
                         console.log("false");
