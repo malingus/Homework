@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Credit cards</title>
+    <script type="text/javascript" src="jquery/jquery-3.0.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#imageList").change(function(){
+                $("img[name=canvas]").attr("src",$(this).val());
+            });
+
+        });
+    </script>
+ <!--script type="text/javascript">
+  function displayImage(elem) {
+      var image = document.getElementById("canvas");
+      image.src = elem.value;
+  }
+  </script-->
+</head>
+<body>
+
+<div align="center">
+<table>
+<tr>
+<td>
+<select name="imageList" id="imageList" onchange="displayImage(this);">
+      <option value="img/vs.jpg">Visa</option>
+      <option value="img/aex.jpg">American Express</option>
+	  <option value="img/masc.jpg">Master Card</option>
+      </select>
+	  </td>
+<td>
+<img name="canvas" src="img/vs.jpg" width="230">
+
+</td>
+</tr>
+</table>
+</div>
+
+<!--script type="text/javascript">
+  function select(value) {
+    //alert(value)
+	var elem = document.getElementById('qq');
+console.log(elem);
+elem.innerHTML=value;
+	}
+	</script-->
+	
+  </body>
+  </html>
