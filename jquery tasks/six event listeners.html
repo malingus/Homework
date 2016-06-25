@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery/jquery-3.0.0.js"></script>
+</head>
+<body>
+<input id="message">
+<button id="btn">Send</button>
+<script type="text/javascript">
+    $(document).on("newMessage");
+    //$('#btn').on("click", SendMessage,listener1,listener2,listener3,listener4,listener5,listener6);
+
+    var listener1 = document.getElementById("btn").addEventListener("click",function(){
+        SendMessage();
+        console.log("event listener 1 got message"+"("+new Date()+")");
+    });
+    var listener2 = document.getElementById("btn").addEventListener("click",function(){
+        SendMessage();
+        console.log("event listener 2 got message"+"("+new Date()+")");
+    });
+    var listener3 = document.getElementById("btn").addEventListener("click",function(){
+        SendMessage();
+        console.log("event listener 3 got message"+"("+new Date()+")");
+    });
+    var listener4 = document.getElementById("btn").addEventListener("click",function(){
+        SendMessage();
+        console.log("event listener 4 got message"+"("+new Date()+")");
+    });
+    var listener5= document.getElementById("btn").addEventListener("click",function(){
+        SendMessage();
+        console.log("event listener 5 got message"+"("+new Date()+")");
+    });
+    var listener6 = document.getElementById("btn").addEventListener("click",function(){
+        SendMessage();
+        console.log("event listener 6 got message"+"("+new Date()+")");
+    });
+    function SendMessage() {
+        msg = $("#message").val();
+        if (msg) {
+            $.event.trigger({
+                type: "newMessage",
+                message: msg
+            });
+        }
+
+    };
+</script>
+</body>
+</html>
