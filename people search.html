@@ -1,0 +1,107 @@
+<!DOCTYPE  html>
+<html>
+<head>
+    <title></title>
+    <script>
+        var q;
+        var people = [
+            {
+                "city": "NY", "citizens": [
+                {"name": "James Barnes", "phone": "(541)754-3010", "quantity": 1},
+                {"name": "Steven Rogers", "phone": "(541)754-3010", "quantity": 1},
+                {"name": "Margaret Carter", "phone": "(316)196-1018", "quantity": 1}
+            ]
+            },
+            {
+                "city": "London", "citizens": [
+                {"name": "Margaret Carter", "phone": "(316)196-1018", "quantity": 1}
+            ]
+            },
+            {
+                "city": "Moskow", "citizens": [
+                {"name": "Natasha Romanova", "phone": "(132)367-7651", "quantity": 1},
+                {"name": "Alexi Shostakov", "phone": "(132)367-7651", "quantity": 1}
+            ]
+            }
+        ];
+        window.onload = function () {
+            var box1 = document.getElementById("ny");
+            var box2 = document.getElementById("london");
+            var box3 = document.getElementById("moskow");
+            list = document.getElementById("list");
+
+            box1.onclick = function () {
+                displayList();
+            };
+            box2.onclick = function () {
+                displayList();
+            };
+            box3.onclick = function () {
+                displayList();
+            };
+
+            function needToDisplay(element) {
+                if (document.getElementById("ny").checked && element.city === "NY") {
+                    return true;
+                } else {
+                    if (document.getElementById("london").checked && element.city === "London") {
+                        return true;
+                    } else {
+                        if (document.getElementById("moskow").checked && element.city === "Moskow") {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+            }
+            function clearList(list) {
+                while (list.firstChild) {
+                    list.removeChild(list.firstChild);
+                }
+
+            }
+
+            function displayList() {
+                clearList(list);
+                q = 0;
+                for (var i = 0; i < people.length; i++) {
+                    var peopleItem = people[i];
+
+                    var displayCheck = needToDisplay(peopleItem);
+                    if (displayCheck) {
+                        for (var j = 0; j < peopleItem.citizens.length; j++) {
+                            var personItem = peopleItem.citizens[j];
+                            var personPhone = peopleItem.citizens[j].phone;
+                            var personName = peopleItem.citizens[j].name;
+                            console.log(people[i].city);
+                            var li = document.createElement('LI');
+                            li.innerHTML = "Name - " + personName + " ," + "Phone number - " + personPhone;
+                            list.appendChild(li);
+                            q = q + 1;
+                        }
+                        document.getElementById("total").innerHTML = "Total citizens: " + q;
+                    }
+                    else {
+                        console.log("false");
+                    }
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div>
+    <p>
+        <input type="checkbox" id="ny">New York<br>
+        <input type="checkbox" id="london">London<br>
+        <input type="checkbox" id="moskow">Moskow<br>
+    </p>
+</div>
+<div>
+    <ul id="list"></ul>
+    <p id="total"></p>
+</div>
+</body>
+</html>
