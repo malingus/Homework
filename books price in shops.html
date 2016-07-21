@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var books = [
+            {"name": "Emma", "code": "111"},
+            {"name": "1984", "code": "222"},
+            {"name": "The Hunger Games", "code": "333"},
+            {"name": "To Kill a Mockingbird", "code": "444"},
+            {"name": "Harry Potter", "code": "555"}
+        ];
+        var shops = [
+            {"name": "Wallmart", "code": "123"},
+            {"name": "Darkroom", "code": "098"},
+            {"name": "La Coqueta", "code": "345"}
+        ];
+        var prices = [
+            {"shop": "123", "book": "111", "price": "12"},
+            {"shop": "123", "book": "222", "price": "15"},
+            {"shop": "123", "book": "333", "price": "10"},
+            {"shop": "123", "book": "444", "price": "14"},
+            {"shop": "098", "book": "444", "price": "11"},
+            {"shop": "098", "book": "111", "price": "19"},
+            {"shop": "098", "book": "222", "price": "17"},
+            {"shop": "345", "book": "555", "price": "18"},
+            {"shop": "345", "book": "222", "price": "15"},
+            {"shop": "345", "book": "111", "price": "13"}
+        ];
+
+
+    </script>
+</head>
+<body>
+<select id="shopsList">
+    <option type="disabled">Shop</option>
+    <option>Wallmart</option>
+    <option>Darkroom</option>
+    <option>La Coqueta</option>
+</select>
+<select id="booksList">
+    <option type="disabled">Book</option>
+    <option>Emma</option>
+    <option>1984</option>
+    <option>The Hunger Games</option>
+    <option>To Kill a Mockingbird</option>
+    <option>Harry Potter</option>
+</select>
+<button id="btn">Price!</button>
+<div id="div"></div>
+<script>
+    var selectedShop;
+    var selectedBook;
+    var bookSelectedCode;
+    var shopSelectedCode;
+    var resultArray = [];
+    var selectShop = document.getElementById("shopsList");
+    var selectBook = document.getElementById("booksList");
+
+    window.onload = function () {
+
+        document.getElementById("btn").onclick = function () {
+            console.log("onclick works");
+            displayString();
+
+        };
+        selectShop.onchange = function () {
+            console.log("onchange works");
+            selectedShop = selectShop.options[selectShop.selectedIndex].text;
+            console.log(selectedShop);
+            shopSelectedCode = findShopCodeByTextInSelect(shops, selectedShop);
+        };
+
+        selectBook.onchange = function () {
+            console.log("onchange works");
+            selectedBook = selectBook.options[selectBook.selectedIndex].text;
+            console.log(selectedBook);
+            bookSelectedCode = findBookCodeByTextInSelect(books, selectedBook);
+             console.log(bookSelectedCode);
+        };
+
+        function findBookCodeByTextInSelect(array, text) {
+         for (var i = 0; i < array.length; i++) {
+         if (text === array[i].name) {
+         return array[i].code;
+         }
+         }
+         }
+        function findShopCodeByTextInSelect(array, text) {
+            for (var i = 0; i < array.length; i++) {
+                if (text === array[i].name) {
+                    return array[i].code;
+                }
+            }
+        }
+
+        /*function checkToDisplay() {
+            console.log(selectedBook);
+            console.log(selectedShop);
+            if (selectedShop === "Wallmart" && selectedBook === "Emma" || selectedBook === "1984") {
+                return true;
+            } else {
+                if (selectedShop === "Darkroom" && selectedBook === "The Hunger Games" || selectedBook === "To Kill a Mockingbird"
+                        || selectedBook === "Emma") {
+                    return true;
+                } else {
+                    if (selectedShop === "La Coqueta" && selectedBook === "Harry Potter" || selectedBook === "1984") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }*/
+
+        function findPriceByCode() {
+            for (var i = 0; i < prices.length; i++) {
+                if (prices[i].shop === shopSelectedCode && prices[i].book === bookSelectedCode) {
+                    var bookPrice = prices[i].price;
+                    return bookPrice;
+                }
+            }
+        }
+
+        function displayString() {
+            var prices = findPriceByCode();
+            //var displayCheck = checkToDisplay();
+            if (prices) {
+                document.getElementById("div").innerHTML = prices;
+            } else {
+                document.getElementById("div").innerHTML = "This book is not available";
+                console.log("false");
+            }
+        }
+
+    };
+
+</script>
+</body>
+</html>
