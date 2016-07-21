@@ -93,25 +93,6 @@
             }
         }
 
-        /*function checkToDisplay() {
-            console.log(selectedBook);
-            console.log(selectedShop);
-            if (selectedShop === "Wallmart" && selectedBook === "Emma" || selectedBook === "1984") {
-                return true;
-            } else {
-                if (selectedShop === "Darkroom" && selectedBook === "The Hunger Games" || selectedBook === "To Kill a Mockingbird"
-                        || selectedBook === "Emma") {
-                    return true;
-                } else {
-                    if (selectedShop === "La Coqueta" && selectedBook === "Harry Potter" || selectedBook === "1984") {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            }
-        }*/
-
         function findPriceByCode() {
             for (var i = 0; i < prices.length; i++) {
                 if (prices[i].shop === shopSelectedCode && prices[i].book === bookSelectedCode) {
@@ -123,7 +104,6 @@
 
         function displayString() {
             var prices = findPriceByCode();
-            //var displayCheck = checkToDisplay();
             if (prices) {
                 document.getElementById("div").innerHTML = prices;
             } else {
