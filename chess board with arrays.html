@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        printArray(generateMatrix());
+    };
+    function generateMatrix() {
+        var matrix = createArray();
+        for (var i = 0; i < 8; i++) {
+            for (var j = 0; j < 8; j++) {
+                if (i % 2 == j % 2) {
+                    matrix[i][j] = "w";
+                } else {
+                    matrix[i][j] = "b";
+                }
+            }
+        }
+        return matrix;
+    }
+    function createArray() {
+        var matrix = [];
+        for (var i = 0; i < 8; i++) {
+            matrix[i] = [];
+        }
+        return matrix;
+    }
+    function printArray(matrix) {
+        var table = document.createElement("table");
+        for (var i = 0; i < 8; i++) {
+            for (var j = 0; j < 8; j++) {
+                document.write(matrix[i][j]);
+            }
+            document.write("<br>");
+        }
+    }
+</script>
+</body>
+</html>
